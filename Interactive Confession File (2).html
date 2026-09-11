@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILE 09 — CLASSIFIED 🔒</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        rose: {
+                            100: '#ffe4e6',
+                            200: '#fecdd3',
+                            300: '#fda4af',
+                            400: '#fb7185',
+                            500: '#f43f5e',
+                            600: '#e11d48',
+                            900: '#881337',
+                            950: '#4c0519',
+                        },
+                        blush: {
+                            100: '#fff1f2',
+                            200: '#ffe4e6',
+                            300: '#fecdd3',
+                            400: '#fda4af',
+                        }
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 2.5s infinite ease-in-out',
+                        'float': 'float 4s ease-in-out infinite',
+                        'stamp': 'stampIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+                        'flower-pulse': 'flowerPulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 15px rgba(244, 63, 94, 0.25), inset 0 0 15px rgba(244, 63, 94, 0.15)' },
+                            '50%': { boxShadow: '0 0 30px rgba(244, 63, 94, 0.5), inset 0 0 25px rgba(244, 63, 94, 0.3)' },
+                        },
+                        flowerPulse: {
+                            '0%, 100%': { transform: 'scale(1) rotate(0deg)', filter: 'drop-shadow(0 10px 20px rgba(225, 29, 72, 0.25))' },
+                            '50%': { transform: 'scale(1.04) rotate(1deg)', filter: 'drop-shadow(0 18px 28px rgba(225, 29, 72, 0.4))' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-8px) rotate(1.5deg)' },
+                        },
+                        stampIn: {
+                            '0%': { opacity: '0', transform: 'scale(2.5) rotate(-12deg)' },
+                            '100%': { opacity: '1', transform: 'scale(1) rotate(-4deg)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(244, 63, 94, 0.5);
+            border-radius: 9999px;
+        }
+
+        /* Glassmorphism card backgrounds */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(243, 203, 213, 0.9);
+            box-shadow: 0 18px 45px rgba(174, 108, 127, 0.13);
+        }
+
+        .glass-letter {
+            background: rgba(255, 253, 249, 0.98);
+            border: 2px solid rgba(241, 194, 206, 0.95);
+            box-shadow: 0 18px 55px rgba(174, 108, 127, 0.18);
+        }
+
+        /* Glowing text accents */
+        .glow-text-pink {
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.4), 0 0 20px rgba(244, 63, 94, 0.2);
+        }
+
+        /* Cat Die-Cut Sticker Style */
+        .cat-sticker {
+            position: absolute;
+            z-index: 25;
+            pointer-events: auto;
+            user-select: none;
+            filter: drop-shadow(0 6px 14px rgba(174, 108, 127, 0.22));
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cat-sticker:hover {
+            transform: scale(1.18) rotate(6deg) !important;
+            filter: drop-shadow(0 10px 20px rgba(244, 63, 94, 0.35));
+        }
+
+        .cat-sticker-frame {
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 18px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: inline-block;
+        }
+
+        /* Global theme resets */
+        html, body {
+            background: #fdf5f3 !important;
+            color: #5e4b43 !important;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        #siteShell {
+            opacity: 0;
+            transform: translateY(18px) scale(.985);
+            transition: opacity 1.1s ease, transform 1.1s cubic-bezier(.2,.8,.2,1), filter 1.1s ease;
+            filter: blur(3px);
+        }
+        #siteShell.revealed {
+            opacity: 1;
+            transform: none;
+            filter: none;
+        }
+
+        /* Intro Screen Overlay */
+        .cinematic-intro {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #f4e7d8;
+            transition: opacity 1.1s ease, visibility 1.1s ease;
+        }
+        .cinematic-intro.dismissed {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .cinematic-intro::before {
+            content: '';
+            position: absolute;
+            inset: -12%;
+            background: radial-gradient(circle at 20% 25%, rgba(236,171,188,.42) 0 8%, transparent 23%),
+                        radial-gradient(circle at 76% 22%, rgba(249,203,211,.48) 0 10%, transparent 25%),
+                        radial-gradient(circle at 54% 80%, rgba(220,159,171,.28) 0 11%, transparent 27%),
+                        linear-gradient(135deg, #f7eadc, #f2ded3 48%, #f8eee1);
+            animation: introBreath 7s ease-in-out infinite alternate;
+        }
+
+        @keyframes introBreath {
+            from { transform: scale(1); filter: saturate(.95); }
+            to { transform: scale(1.06); filter: saturate(1.08); }
+        }
+
+        .intro-stage {
+            position: relative;
+            z-index: 2;
+            width: min(88vw, 430px);
+            text-align: center;
+        }
+        .intro-kicker {
+            font-family: 'Space Mono', monospace;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            font-size: 10px;
+            color: #a57b72;
+            margin-bottom: 18px;
+            opacity: 0;
+            animation: introFade .9s .35s forwards;
+        }
+        .intro-letter {
+            position: relative;
+            margin: auto;
+            width: min(62vw, 260px);
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: letterFloat 5s ease-in-out 1.1s infinite;
+        }
+        .intro-envelope {
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #fffaf1, #ead9c7);
+            box-shadow: 0 22px 55px rgba(117,73,64,.18);
+            border: 1px solid rgba(128,91,78,.18);
+            transform: rotate(-2deg);
+        }
+        .intro-seal {
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #c87586;
+            color: #fff8f2;
+            box-shadow: 0 5px 18px rgba(153,73,92,.24);
+            font-size: 16px;
+        }
+        .intro-letter-paper {
+            position: absolute;
+            z-index: 3;
+            width: 84%;
+            height: 80%;
+            background: #fffdf7;
+            border: 1px solid #e6d7c8;
+            box-shadow: 0 16px 30px rgba(93,67,58,.14);
+            padding: 18px 16px;
+            text-align: left;
+            transform: translateY(35px) rotate(1deg) scale(.88);
+            opacity: 0;
+            animation: paperReveal 1.15s .85s cubic-bezier(.2,.9,.25,1.2) forwards;
+        }
+        .intro-letter-paper .line {
+            height: 5px;
+            background: #eadfd4;
+            border-radius: 20px;
+            margin: 8px 0;
+        }
+        .intro-letter-paper .line.short { width: 55%; }
+
+        @keyframes paperReveal {
+            0% { opacity: 0; transform: translateY(35px) rotate(1deg) scale(.88); }
+            100% { opacity: 1; transform: translateY(-3px) rotate(-1deg) scale(1); }
+        }
+        @keyframes letterFloat {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-7px) rotate(.5deg); }
+        }
+
+        .intro-title {
+            font-family: 'Caveat', cursive;
+            font-size: clamp(42px, 12vw, 64px);
+            line-height: .95;
+            color: #8f5961;
+            margin-top: 24px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: introFadeUp 1s 1.45s forwards;
+        }
+        .intro-subtitle {
+            font-size: 13px;
+            color: #8b736d;
+            letter-spacing: .04em;
+            margin-top: 10px;
+            opacity: 0;
+            animation: introFade .9s 1.8s forwards;
+        }
+        .intro-open {
+            margin-top: 24px;
+            border: 1px solid #d7aaa9;
+            background: rgba(255,251,245,.88);
+            color: #85535d;
+            border-radius: 999px;
+            padding: 12px 26px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            box-shadow: 0 10px 30px rgba(127,80,77,.13);
+            opacity: 0;
+            animation: introFadeUp .9s 2.15s forwards;
+            transition: transform .25s, box-shadow .25s;
+            cursor: pointer;
+        }
+        .intro-open:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(127,80,77,.2);
+        }
+
+        @keyframes introFade { to { opacity: 1; } }
+        @keyframes introFadeUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* Emoji Rain Canvas overlay */
+        #emojiRainCanvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 90;
+        }
+    </style>
+</head>
+<body class="bg-[#fdf5f3] text-[#5b4650] font-sans min-h-full flex flex-col justify-between overflow-x-hidden relative selection:bg-[#f8a9bd] selection:text-white">
+
+<!-- CINEMATIC OPENING OVERLAY -->
+<div id="cinematicIntro" class="cinematic-intro">
+    <div class="intro-stage">
+        <div class="intro-kicker">a little something i couldn't say normally</div>
+        <div class="intro-letter">
+            <div class="intro-envelope"></div>
+            <div class="intro-letter-paper">
+                <div class="text-xs font-bold text-[#c87586] mb-1">♡</div>
+                <div style="font-family:Caveat,cursive;font-size:24px;color:#93656b">For you.</div>
+                <div class="line"></div>
+                <div class="line short"></div>
+                <div class="line"></div>
+            </div>
+            <div class="intro-seal">♥</div>
+        </div>
+        <div class="intro-title">there's something<br>i want you to know.</div>
+        <div class="intro-subtitle">take your time. there's no pressure here.</div>
+        <button id="introOpenBtn" class="intro-open" type="button">open the letter · 🐾</button>
+    </div>
+</div>
+
+<!-- FLOATING PARTICLES CANVAS -->
+<canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+<!-- EMOJI RAIN ANIMATION CANVAS -->
+<canvas id="emojiRainCanvas"></canvas>
+
+<!-- MAIN CONTAINER -->
+<div id="siteShell" class="relative z-20 min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 max-w-lg mx-auto transition-all duration-500">
+
+    <!-- HEADER / NAVIGATION STATUS -->
+    <header class="w-full pt-2 pb-2 flex flex-col gap-3">
+        <div class="flex items-center justify-between bg-white/85 border border-[#f4c9d4] rounded-full px-4 py-2 backdrop-blur-md shadow-[0_8px_25px_rgba(174,108,127,.12)]">
+            <!-- Secret Agent Badge -->
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping"></span>
+                <span class="font-mono text-xs tracking-wider text-[#c47a91] font-bold uppercase">FILE 09 — A LITTLE SECRET 💌</span>
+            </div>
+            
+            <!-- Audio Sound Toggle -->
+            <button id="soundToggleBtn" onclick="toggleSound()" class="text-xs font-mono text-[#a76d7e] hover:text-[#d56d8a] bg-[#fff3f6] px-2.5 py-1 rounded-full border border-[#efd0d8] flex items-center gap-1.5 transition-colors">
+                <span id="soundIcon">🔊</span>
+                <span id="soundText" class="hidden sm:inline">SOUND ON</span>
+            </button>
+        </div>
+
+        <!-- Clearance Level Progress Bar -->
+        <div class="w-full bg-white/80 border border-[#f0ccd6] rounded-xl p-2.5 backdrop-blur-sm shadow-[0_6px_20px_rgba(174,108,127,.08)]">
+            <div class="flex justify-between items-center text-[10px] font-mono text-rose-400 mb-1.5 uppercase tracking-widest font-semibold">
+                <span>CONFESSION PROGRESS</span>
+                <span id="progressText">LEVEL 1/6</span>
+            </div>
+            <div class="w-full bg-[#fde8ee] h-2.5 rounded-full overflow-hidden border border-[#f2cbd5]">
+                <div id="progressBar" class="bg-gradient-to-r from-rose-500 via-pink-400 to-amber-300 h-full w-1/6 transition-all duration-500 ease-out shadow-[0_0_10px_rgba(244,63,94,0.6)]"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN SLIDE CONTENT AREA WITH DECORATIVE CAT STICKERS -->
+    <main class="w-full my-auto py-2 relative min-h-[460px] flex items-center justify-center">
+
+        <!-- DECORATIVE CUTE CAT STICKERS FRAME (Floating around cards) -->
+        
+        <!-- Cat Sticker 1: Pop Cat / Smiling Cat (Top Left) -->
+        <div class="cat-sticker -top-4 -left-4 sm:-left-8 sm:-top-6 transform -rotate-12" onclick="triggerStickerPop(this, '😸')" title="Cute Meow!">
+            <div class="cat-sticker-frame">
+                <svg class="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 100 100" fill="none">
+                    <!-- Cat face background -->
+                    <path d="M20 35 L10 10 L38 25 C45 22 55 22 62 25 L90 10 L80 35 C92 48 90 75 75 88 C60 98 40 98 25 88 C10 75 8 48 20 35 Z" fill="#F8E7D8" stroke="#FFFFFF" stroke-width="4"/>
+                    <!-- Inner ears -->
+                    <polygon points="16,18 24,30 32,24" fill="#F4A2B5"/>
+                    <polygon points="84,18 76,30 68,24" fill="#F4A2B5"/>
+                    <!-- Cheerful eyes -->
+                    <ellipse cx="35" cy="48" rx="6" ry="8" fill="#5B4650"/>
+                    <ellipse cx="65" cy="48" rx="6" ry="8" fill="#5B4650"/>
+                    <circle cx="37" cy="46" r="2" fill="#FFFFFF"/>
+                    <circle cx="67" cy="46" r="2" fill="#FFFFFF"/>
+                    <!-- Cute nose & big happy mouth (Popcat style) -->
+                    <polygon points="50,56 46,52 54,52" fill="#F4A2B5"/>
+                    <ellipse cx="50" cy="68" rx="12" ry="10" fill="#5B4650"/>
+                    <ellipse cx="50" cy="70" rx="9" ry="6" fill="#F43F5E"/>
+                    <!-- Rosy cheeks -->
+                    <circle cx="26" cy="58" r="6" fill="#FCA5A5" opacity="0.6"/>
+                    <circle cx="74" cy="58" r="6" fill="#FCA5A5" opacity="0.6"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Cat Sticker 2: Cool Sunglasses Cat (Top Right) -->
+        <div class="cat-sticker -top-6 -right-4 sm:-right-8 transform rotate-12" onclick="triggerStickerPop(this, '3️⃣')" title="Cool Cat!">
+            <div class="cat-sticker-frame">
+                <svg class="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 100 100" fill="none">
+                    <!-- Orange tabby cat head -->
+                    <path d="M20 35 L12 12 L38 25 C45 22 55 22 62 25 L88 12 L80 35 C92 48 90 75 75 88 C60 98 40 98 25 88 C10 75 8 48 20 35 Z" fill="#FDBA74" stroke="#FFFFFF" stroke-width="4"/>
+                    <!-- Inner ears -->
+                    <polygon points="18,20 26,30 32,24" fill="#FB923C"/>
+                    <polygon points="82,20 74,30 68,24" fill="#FB923C"/>
+                    <!-- Cool Sunglasses -->
+                    <path d="M20 44 Q50 38 80 44 L76 58 Q50 64 24 58 Z" fill="#1E293B"/>
+                    <line x1="22" y1="46" x2="78" y2="46" stroke="#94A3B8" stroke-width="2"/>
+                    <!-- Cute smirk -->
+                    <path d="M44 68 Q50 72 56 68" stroke="#7C2D12" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Cat Sticker 3: Cute Banana / Crying Kitten (Bottom Left) -->
+        <div class="cat-sticker -bottom-4 -left-3 sm:-left-6 transform rotate-6" onclick="triggerStickerPop(this, '🐾')" title="Soft Kitten">
+            <div class="cat-sticker-frame">
+                <svg class="w-11 h-11 sm:w-14 sm:h-14" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="40" fill="#FEF08A" stroke="#FFFFFF" stroke-width="4"/>
+                    <path d="M30 40 L22 22 L40 32 Z" fill="#E2E8F0"/>
+                    <path d="M70 40 L78 22 L60 32 Z" fill="#E2E8F0"/>
+                    <!-- Big sparkling eyes -->
+                    <circle cx="38" cy="48" r="8" fill="#1E293B"/>
+                    <circle cx="62" cy="48" r="8" fill="#1E293B"/>
+                    <circle cx="40" cy="46" r="3" fill="#FFFFFF"/>
+                    <circle cx="64" cy="46" r="3" fill="#FFFFFF"/>
+                    <!-- Tiny mouth -->
+                    <path d="M45 62 Q50 65 55 62" stroke="#475569" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Cat Sticker 4: Heart Paw Kitten (Bottom Right) -->
+        <div class="cat-sticker -bottom-5 -right-3 sm:-right-6 transform -rotate-12" onclick="triggerStickerPop(this, '💖')" title="Heart Paw">
+            <div class="cat-sticker-frame">
+                <svg class="w-12 h-12 sm:w-15 sm:h-15" viewBox="0 0 100 100" fill="none">
+                    <!-- Cat face background -->
+                    <path d="M22 35 L12 15 L36 26 C45 23 55 23 64 26 L88 15 L78 35 C90 48 88 72 74 85 C60 95 40 95 26 85 C12 72 10 48 22 35 Z" fill="#E2E8F0" stroke="#FFFFFF" stroke-width="4"/>
+                    <!-- Cheerful eyes -->
+                    <path d="M30 48 Q38 42 44 48" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    <path d="M56 48 Q62 42 70 48" stroke="#334155" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    <!-- Heart Nose -->
+                    <path d="M50 56 C48 52 42 54 45 58 C48 62 50 64 50 64 C50 64 52 62 55 58 C58 54 52 52 50 56 Z" fill="#F43F5E"/>
+                </svg>
+            </div>
+        </div>
+
+
+        <!-- STEP 1: ACCESS GRANTED / INTRO -->
+        <div id="step1" class="step-card w-full glass-card rounded-3xl p-6 sm:p-8 animate-fade-in-up flex flex-col items-center text-center relative z-10">
+            
+            <!-- Top Secret Stamp -->
+            <div class="mb-5 inline-block transform -rotate-3">
+                <div class="border-2 border-dashed border-rose-500 text-rose-500 font-mono text-xs sm:text-sm font-bold px-3.5 py-1.5 rounded-lg uppercase tracking-widest bg-rose-50/80 animate-stamp">
+                    A LITTLE SECRET • OPEN WITH CARE 💌
+                </div>
+            </div>
+
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-rose-500 via-pink-500 to-rose-600 mb-3 glow-text-pink">
+                A LITTLE SECRET.
+            </h1>
+
+            <div class="space-y-3 text-[#725c65] text-base sm:text-lg font-light leading-relaxed mb-6">
+                <p class="font-semibold text-[#bd6f88]">I want to tell you something po...</p>
+                <p> pero bago ka mag continue...</p>
+                <p class="text-xs sm:text-sm text-[#9b818b] italic"> you can freely close naman if you are not INTERESTED...</p>
+            </div>
+
+            <!-- Banner Note -->
+            <div class="w-full bg-[#fff0f4] border border-[#f2c7d3] rounded-xl p-3.5 mb-6 flex items-center justify-center gap-2 text-[#a96b7f] text-xs sm:text-sm shadow-sm">
+                <span> But if you are curious po, edi next mo na agad `ya.</span>
+            </div>
+
+            <!-- Next Action Button -->
+            <button onclick="goToStep(2)" class="w-full group relative inline-flex items-center justify-center px-6 py-3.5 text-base font-semibold text-white bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 rounded-2xl shadow-lg shadow-rose-200 transform active:scale-98 transition-all duration-200">
+                <span>Continue →</span>
+            </button>
+        </div>
+
+        <!-- STEP 2: QUESTION 1 -->
+        <div id="step2" class="step-card hidden w-full glass-card rounded-3xl p-6 sm:p-8 animate-fade-in-up flex flex-col relative z-10">
+            
+            <div class="flex items-center gap-2 mb-2 font-mono text-xs text-rose-500 uppercase tracking-widest font-bold">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span>QUESTION 1 / 2</span>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-[#5c434d] mb-6 leading-snug">
+                How long do you think na may tinatago ako sa`yo?
+            </h2>
+
+            <!-- Choice Cards -->
+            <div class="space-y-3 mb-6" id="q1Options">
+                <button onclick="selectOptionQ1(this, 'weeks')" class="q1-option w-full text-left p-4 rounded-2xl bg-white/90 border border-rose-200 hover:border-rose-400 transition-all flex items-center justify-between group active:scale-[0.99] shadow-sm">
+                    <span class="text-sm sm:text-base text-[#674f58] group-hover:text-rose-600 font-medium">○ A few weeks</span>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity text-rose-500">💭</span>
+                </button>
+
+                <button onclick="selectOptionQ1(this, 'months')" class="q1-option w-full text-left p-4 rounded-2xl bg-white/90 border border-rose-200 hover:border-rose-400 transition-all flex items-center justify-between group active:scale-[0.99] shadow-sm">
+                    <span class="text-sm sm:text-base text-[#674f58] group-hover:text-rose-600 font-medium">○ A few months</span>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity text-rose-500">💭</span>
+                </button>
+
+                <button onclick="selectOptionQ1(this, 'noidea')" class="q1-option w-full text-left p-4 rounded-2xl bg-white/90 border border-rose-200 hover:border-rose-400 transition-all flex items-center justify-between group active:scale-[0.99] shadow-sm">
+                    <span class="text-sm sm:text-base text-[#674f58] group-hover:text-rose-600 font-medium">○ DI KO NGANI ALAM, HAYOP KA BA </span>
+                    <span class="opacity-0 group-hover:opacity-100 transition-opacity text-rose-500">🤬 </span>
+                </button>
+            </div>
+
+            <!-- Feedback Banner -->
+            <div id="q1Feedback" class="hidden mb-6 p-3.5 rounded-xl bg-rose-50 border border-rose-300 text-center text-xs sm:text-sm text-rose-700 animate-fade-in-up font-medium">
+                <span id="q1FeedbackText">Aha! Tama ba or ako yung may tama sayo... 💭</span>
+            </div>
+
+            <!-- Next Button -->
+            <button id="step2NextBtn" disabled onclick="goToStep(3)" class="w-full py-3.5 px-6 rounded-2xl font-semibold text-white bg-gradient-to-r from-rose-500 to-pink-500 opacity-50 cursor-not-allowed transition-all duration-200 shadow-md">
+                Next Question →
+            </button>
+        </div>
+
+        <!-- STEP 3: QUESTION 2 & REALIZATION -->
+        <div id="step3" class="step-card hidden w-full glass-card rounded-3xl p-6 sm:p-8 animate-fade-in-up flex flex-col relative z-10">
+            
+            <div class="flex items-center gap-2 mb-3 font-mono text-xs text-rose-500 uppercase tracking-widest font-bold">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                <span>QUESTION 2</span>
+            </div>
+
+            <!-- Delayed Staggered Lines -->
+            <div class="space-y-4 my-2">
+                <p id="line1" class="text-base sm:text-lg text-[#634b55] leading-relaxed opacity-0 transition-opacity duration-700">
+                    Do you remember the person who kept finding excuses to talk to you? Tapos sobrang daldal pa?
+                </p>
+                
+                <p id="line2" class="text-base sm:text-lg text-[#634b55] leading-relaxed opacity-0 transition-opacity duration-700">
+                    The person who always describe his crush?
+                </p>
+
+                <p id="line3" class="text-base sm:text-lg text-[#886975] leading-relaxed opacity-0 transition-opacity duration-700 italic">
+                    I think you could guess it na.
+                </p>
+
+                <p id="line4" class="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-pink-600 glow-text-pink opacity-0 transition-opacity duration-1000">
+                    That was me. 🐾
+                </p>
+            </div>
+
+            <!-- Heart sticker floating accent -->
+            <div id="heartSticker" class="opacity-0 my-3 text-center transform hover:scale-110 transition-transform cursor-pointer" onclick="triggerHeartBurst(event)">
+                <span class="text-5xl inline-block animate-bounce">💌</span>
+            </div>
+
+            <button id="step3NextBtn" class="opacity-0 w-full mt-2 py-3.5 px-6 rounded-2xl font-semibold text-white bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 transform active:scale-98 transition-all duration-300 shadow-lg shadow-rose-200" onclick="goToStep(4)">
+                Before you continue... 💗
+            </button>
+        </div>
+
+        <!-- STEP 4: LAST WARNING -->
+        <div id="step4" class="step-card hidden w-full animate-fade-in-up flex flex-col items-center relative z-10">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 text-center w-full border-2 border-[#f3cbd5] shadow-[0_18px_45px_rgba(174,108,127,.14)] relative overflow-hidden">
+                <div class="text-5xl mb-3">💗</div>
+                <div class="inline-block px-3 py-1 rounded-full bg-[#fff0f4] text-[#bd7189] text-[10px] font-mono font-bold uppercase tracking-widest mb-4">
+                    ONE LAST WARNING
+                </div>
+                <div class="space-y-4 text-[#6f5962] text-base sm:text-lg leading-relaxed">
+                    <p>Now if you are not interested and don't want to hurt someone. I'm giving you the time to close this, and act like nothing happened :(.</p>
+                    <p class="font-medium text-[#b96f86]">However, if you are still interested, I encourage you na mag continue. Malay mo may nag hihintay..,,.,,..</p>
+                </div>
+                <div class="mt-6 flex justify-center gap-2 text-xl">🌷 🐾 💌 🐾 🌷</div>
+                <button onclick="goToStep(5)" class="w-full mt-6 py-3.5 px-6 rounded-2xl font-semibold text-white bg-[#e99ab0] hover:bg-[#df829d] shadow-lg shadow-[#e99ab0]/25 transition-all">
+                    I'm still curious... 💗
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 5: THE CONFESSION LETTER -->
+        <div id="step5" class="step-card hidden w-full animate-fade-in-up flex flex-col items-center relative z-10">
+            <div class="glass-letter rounded-3xl p-6 sm:p-8 text-[#5b4650] shadow-[0_18px_55px_rgba(174,108,127,.18)] relative overflow-hidden w-full border-2 border-[#f1c2ce]">
+                
+                <div class="text-center mb-4">
+                    <span class="text-xs uppercase tracking-widest text-[#bd7189] font-bold font-mono">Confession Letter 💌</span>
+                </div>
+
+                <div class="font-handwriting text-2xl sm:text-3xl text-[#624c55] leading-relaxed space-y-4 relative z-10">
+                    <p>Okay. Tama na sa pagiging torpe...</p>
+                    <p class="text-4xl sm:text-5xl font-bold text-[#d96f8b] my-2">I like you, Shella. </p>
+                    <p>I've liked you for a while now... siguro longer than I probably should've kept quiet about hahsha</p>
+                    <p>I don't expect you to suddenly feel the same way, and I'm not asking you to give me an answer right now.</p>
+                    <p>I just wanted you to know because you're someone I've genuinely come to appreciate over the time.</p>
+                    <p class="bg-[#fff0f4] p-3.5 rounded-2xl border border-[#f1c6d1] text-[#785a65]">You're kind, beautiful, smart, and honestly just someone I enjoy being around.</p>
+                    <p>So ayun...</p>
+                    <p>Sana things will not be awkward even if you don't reciprocate. I wanna stay friends w/u pa rin kasi, if ever things go south.</p>
+                    <p>I just wanted you to know and be aware. :)</p>
+                </div>
+
+                <!-- WATERCOLOR BOUQUET OF FLOWERS STICKER (Near the end of confession letter) -->
+                <div class="my-6 pt-2 flex flex-col items-center justify-center relative z-20">
+                    <div class="relative group cursor-pointer transform hover:scale-105 transition-all duration-300" onclick="triggerHeartBurst(event)" title="A bouquet for you 💐">
+                        
+                        <!-- Die-cut Sticker White Outer Frame & Watercolor Bouquet Graphic -->
+                        <div class="bg-white p-3 rounded-3xl shadow-xl border-4 border-white transform -rotate-2 hover:rotate-0 transition-transform duration-300">
+                            <svg class="w-36 h-48 sm:w-44 sm:h-56 filter drop-shadow-md" viewBox="0 0 200 280" fill="none">
+                                <!-- Wrapper / Paper -->
+                                <path d="M40 140 L100 260 L160 140 Q180 180 100 270 Q20 180 40 140 Z" fill="#E8D5C4" stroke="#D4BEA9" stroke-width="3"/>
+                                <path d="M40 140 Q100 110 160 140 L100 260 Z" fill="#F3E5D8"/>
+                                <!-- Bow Ribbon -->
+                                <path d="M85 200 Q70 190 60 210 Q80 215 95 205 Z" fill="#C87586"/>
+                                <path d="M115 200 Q130 190 140 210 Q120 215 105 205 Z" fill="#C87586"/>
+                                <circle cx="100" cy="202" r="8" fill="#B25E70"/>
+                                <path d="M96 208 L88 240 M104 208 L112 240" stroke="#B25E70" stroke-width="4" stroke-linecap="round"/>
+                                
+                                <!-- Green Leaves -->
+                                <path d="M50 110 Q30 80 60 70 Q70 95 50 110 Z" fill="#88A070"/>
+                                <path d="M150 110 Q170 80 140 70 Q130 95 150 110 Z" fill="#88A070"/>
+                                <path d="M100 70 Q100 40 115 50 Q110 75 100 70 Z" fill="#718B58"/>
+                                
+                                <!-- Watercolor Peony Flowers -->
+                                <circle cx="70" cy="90" r="28" fill="#E11D48" opacity="0.85"/>
+                                <circle cx="66" cy="86" r="20" fill="#FB7185"/>
+                                <circle cx="72" cy="92" r="14" fill="#FECDD3"/>
+
+                                <circle cx="130" cy="90" r="28" fill="#E11D48" opacity="0.85"/>
+                                <circle cx="134" cy="86" r="20" fill="#FB7185"/>
+                                <circle cx="128" cy="92" r="14" fill="#FECDD3"/>
+
+                                <circle cx="100" cy="65" r="30" fill="#9F1239" opacity="0.9"/>
+                                <circle cx="100" cy="62" r="22" fill="#E11D48"/>
+                                <circle cx="100" cy="66" r="15" fill="#FDA4AF"/>
+
+                                <circle cx="100" cy="120" r="26" fill="#FB7185" opacity="0.9"/>
+                                <circle cx="98" cy="118" r="18" fill="#FECDD3"/>
+                                <circle cx="102" cy="122" r="10" fill="#FFF1F2"/>
+
+                                <circle cx="50" cy="125" r="22" fill="#E11D48" opacity="0.8"/>
+                                <circle cx="48" cy="123" r="15" fill="#FDA4AF"/>
+
+                                <circle cx="150" cy="125" r="22" fill="#E11D48" opacity="0.8"/>
+                                <circle cx="152" cy="123" r="15" fill="#FDA4AF"/>
+                            </svg>
+                        </div>
+
+                        <!-- Tag badge -->
+                        <div class="absolute -bottom-2 right-1 bg-rose-500 text-white font-mono text-[10px] font-bold px-3 py-1 rounded-full shadow-md border-2 border-white">
+                            For You 💐
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOUQUET ACCEPTANCE CHOICES (MOVED TO SLIDE 5) -->
+                <div class="my-4 border-t border-[#f0d1d8] pt-4 text-center">
+                    <p class="text-xs sm:text-sm font-semibold text-[#644b55] mb-3">
+                        Will you accept this bouquet?
+                    </p>
+
+                    <!-- CHOICE BUTTONS -->
+                    <div id="bouquetChoiceButtons" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <button onclick="handleBouquetChoice('take')" class="w-full py-3 px-4 rounded-2xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-semibold text-xs sm:text-sm shadow-md shadow-rose-200 transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                            <span>Accept the bouquet</span>
+                            <span class="text-base">💐</span>
+                        </button>
+
+                        <button onclick="handleBouquetChoice('decline')" class="w-full py-3 px-4 rounded-2xl bg-rose-50 hover:bg-rose-100 text-[#7a5864] border border-rose-200 font-semibold text-xs sm:text-sm transition-all transform active:scale-95 flex items-center justify-center gap-2">
+                            <span>Decline the bouquet</span>
+                            <span class="text-base">🙈</span>
+                        </button>
+                    </div>
+
+                    <!-- DYNAMIC RESULT BANNER -->
+                    <div id="bouquetResultCard" class="hidden my-3 p-3.5 rounded-2xl border transition-all animate-fade-in-up text-left">
+                        <div class="flex items-center gap-3">
+                            <span id="bouquetResultEmoji" class="text-3xl">😉</span>
+                            <p id="bouquetResultText" class="text-xs sm:text-sm font-medium text-[#624b55] leading-snug"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2 pt-3 border-t border-[#f0d1d8] text-center">
+                    <span class="text-xs text-[#b8798c]">👹 made with courage, flowers, and a little bit of torpe energy HAHAHAHA 👹</span>
+                </div>
+            </div>
+
+            <button onclick="goToStep(6)" class="w-full mt-5 py-3.5 px-6 rounded-2xl font-semibold text-white bg-[#e99ab0] hover:bg-[#df829d] shadow-lg shadow-[#e99ab0]/25 transition-all text-base flex items-center justify-center gap-2">
+                <span>Continue to final note</span>
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- STEP 6: CLEAN LANDSCAPE FINAL SLIDE (RETRO RADIO & STICKY NOTE) -->
+        <div id="step6" class="step-card hidden w-full animate-fade-in-up relative z-10">
+            <div class="glass-card rounded-3xl p-5 sm:p-8 border-2 border-[#f3cbd5] shadow-[0_18px_50px_rgba(174,108,127,.15)] relative overflow-hidden w-full">
+                
+                <div class="flex items-center justify-between mb-5 pb-3 border-b border-rose-100">
+                    <div class="inline-block px-3 py-1 rounded-full bg-[#fff0f4] text-[#bd7189] text-[10px] font-mono font-bold uppercase tracking-widest">
+                        FINAL NOTE & SOUNDTRACK 🎵
+                    </div>
+                    <span class="text-xs font-mono text-[#c47a91]">MATIHYU 💌</span>
+                </div>
+
+                <!-- LANDSCAPE TWO-COLUMN GRID -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    
+                    <!-- COLUMN 1: RETRO VINTAGE PINK RADIO -->
+                    <div class="bg-gradient-to-br from-[#fff2f5] via-[#fde8ee] to-[#f9d7e0] border-2 border-white rounded-3xl p-5 shadow-inner flex flex-col justify-between relative overflow-hidden group">
+                        
+                        <!-- Radio Antenna -->
+                        <div class="absolute -top-1 right-8 w-1 h-12 bg-slate-300 rounded-full transform rotate-12 origin-bottom border border-slate-400"></div>
+
+                        <!-- Top Control Lights -->
+                        <div class="flex items-center justify-between mb-3 relative z-10">
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+                                <span class="text-[10px] font-mono font-bold text-[#8a5d6a] tracking-wider uppercase">FM STEREO</span>
+                            </div>
+                            <span class="text-[10px] font-mono text-rose-400 font-semibold">94.3 MHz</span>
+                        </div>
+
+                        <!-- Radio Tuner Screen -->
+                        <div class="bg-[#3d2a33] border-2 border-[#f2cbd5] rounded-2xl p-3 text-rose-100 font-mono mb-4 shadow-md relative">
+                            <div class="flex items-center justify-between text-[11px] mb-1.5 opacity-90">
+                                <span>NOW PLAYING</span>
+                                <span class="animate-pulse text-rose-300">● LIVE</span>
+                            </div>
+                            <div class="text-sm font-bold text-white truncate">Always</div>
+                            <div class="text-xs text-rose-200/80 truncate">Daniel Caesar</div>
+
+                            <!-- Frequency Gauge Lines -->
+                            <div class="mt-2.5 pt-2 border-t border-rose-900/50 flex justify-between items-end h-4 px-1">
+                                <div class="w-0.5 h-2 bg-rose-400/50"></div>
+                                <div class="w-0.5 h-3 bg-rose-400/50"></div>
+                                <div class="w-0.5 h-2 bg-rose-400/50"></div>
+                                <div class="w-0.5 h-4 bg-rose-300"></div>
+                                <!-- Active Dial Needle -->
+                                <div class="w-1 h-5 bg-rose-400 rounded-full shadow-[0_0_8px_#f43f5e] -mb-0.5"></div>
+                                <div class="w-0.5 h-2 bg-rose-400/50"></div>
+                                <div class="w-0.5 h-3 bg-rose-400/50"></div>
+                                <div class="w-0.5 h-2 bg-rose-400/50"></div>
+                            </div>
+                        </div>
+
+                        <!-- Radio Speaker Grille & Spotify Embedded Player -->
+                        <div class="bg-white/80 rounded-2xl p-3 border border-rose-200/80 shadow-sm mb-3">
+                            <iframe src="https://open.spotify.com/embed/track/2LlOeW5rVcvl3QcPNPcDus?utm_source=generator&theme=0" title="Always by Daniel Caesar on Spotify" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" style="display:block;width:100%;height:80px;border:0;border-radius:12px"></iframe>
+                        </div>
+
+                        <!-- Radio Physical Knobs & Buttons -->
+                        <div class="flex items-center justify-between pt-1">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-b from-slate-100 to-slate-300 border-2 border-white shadow-md grid place-items-center cursor-pointer active:scale-95 transition-transform" onclick="toggleSound()" title="Volume Dial">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-500"></div>
+                                </div>
+                                <span class="text-[10px] font-mono text-[#8a5d6a] font-bold">VOL</span>
+                            </div>
+
+                            <!-- Decorative Radio Knobs -->
+                            <div class="flex items-center gap-2">
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-b from-slate-100 to-slate-300 border-2 border-white shadow-md"></div>
+                                <div class="w-7 h-7 rounded-full bg-gradient-to-b from-slate-100 to-slate-300 border-2 border-white shadow-md"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- COLUMN 2: STICKY NOTE WITH LAST MESSAGE & RESPONSES -->
+                    <div class="flex flex-col justify-between space-y-4">
+                        
+                        <!-- STICKY NOTE DESIGN -->
+                        <div class="relative bg-[#fffce8] border border-[#f5ebaa] rounded-2xl p-5 shadow-md transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                            <!-- Adhesive Tape Graphic -->
+                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 bg-white/70 backdrop-blur-sm border border-amber-200/50 shadow-sm transform -rotate-2"></div>
+                            
+                            <div class="font-handwriting text-2xl text-[#5c464e] leading-snug space-y-2 pt-2">
+                                <p class="font-bold text-[#b96f86]">Whatever your answer is, we're okay.</p>
+                                <p>Seriously.</p>
+                                <p>Thanks for reading this far. :)</p>
+                            </div>
+
+                            <div class="mt-4 text-right font-handwriting text-xl text-[#b8798c] font-bold">
+                                — Matihyu 💌
+                            </div>
+                        </div>
+
+                        <!-- RESPONSE OPTIONS -->
+                        <div class="space-y-2">
+                            <p class="text-[11px] font-mono font-bold text-[#b8798c] uppercase tracking-wider">Leave a response:</p>
+                            <button onclick="showResponseModal('response')" class="w-full p-3 rounded-2xl bg-[#fff4f6] border border-[#efc8d3] hover:border-[#df8da4] text-[#725660] transition-all text-xs font-medium flex items-center justify-between group shadow-sm">
+                                <span>I have a response 💬</span>
+                                <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                            <button onclick="showResponseModal('time')" class="w-full p-3 rounded-2xl bg-[#fff8f2] border border-[#f1d8c6] hover:border-[#e4b897] text-[#725660] transition-all text-xs font-medium flex items-center justify-between group shadow-sm">
+                                <span>I need time ⏳</span>
+                                <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                            <button onclick="showResponseModal('appreciate')" class="w-full p-3 rounded-2xl bg-[#fff4f6] border border-[#efc8d3] hover:border-[#df8da4] text-[#725660] transition-all text-xs font-medium flex items-center justify-between group shadow-sm">
+                                <span>I appreciate your feelings but I only see you as a friend 💗</span>
+                                <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Sweet Non-Pressuring Response Modal -->
+    <div id="responseModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md hidden transition-opacity">
+        <div class="glass-card rounded-3xl p-6 max-w-sm w-full border border-rose-300 text-center shadow-2xl animate-fade-in-up">
+            <div class="text-4xl mb-3" id="modalEmoji">✨</div>
+            <div id="modalContent" class="text-[#5c434d] text-base leading-relaxed mb-6 font-medium"></div>
+            <button id="modalActionBtn" onclick="closeResponseModal()" class="w-full py-3.5 px-4 bg-rose-500 hover:bg-rose-600 text-white rounded-2xl text-sm font-semibold transition-colors shadow-md shadow-rose-200">
+                Got it! 💕
+            </button>
+            <button id="modalSecondaryBtn" onclick="closeResponseModal()" class="hidden w-full mt-2.5 py-2 text-xs font-medium text-[#9b818b] hover:text-[#5c434d] transition-colors">
+                Maybe later
+            </button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="w-full py-3 text-center font-mono text-[10px] text-[#a18892] tracking-wider">
+        <span>FILE 09 • UNLOCKED WITH COURAGE</span>
+    </footer>
+
+</div>
+
+<script>
+    /* --- STATE MANAGEMENT & NAVIGATION --- */
+    let currentStep = 1;
+    let isMuted = false;
+    let audioCtx = null;
+
+    // Initialize Web Audio Context
+    function initAudio() {
+        if (!audioCtx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) audioCtx = new AudioContext();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+    }
+
+    /* --- AUDIO SYNTHESIZER SOUND EFFECTS --- */
+    function playSound(type) {
+        if (isMuted) return;
+        initAudio();
+        if (!audioCtx) return;
+
+        try {
+            const now = audioCtx.currentTime;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            if (type === 'click') {
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(440, now);
+                osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
+                gain.gain.setValueAtTime(0.15, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+                osc.start(now);
+                osc.stop(now + 0.08);
+            } else if (type === 'success') {
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(523.25, now);
+                osc.frequency.setValueAtTime(659.25, now + 0.1);
+                gain.gain.setValueAtTime(0.2, now);
+                gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                osc.start(now);
+                osc.stop(now + 0.3);
+            } else if (type === 'harp') {
+                const notes = [523.25, 659.25, 783.99, 987.77, 1046.50];
+                notes.forEach((freq, idx) => {
+                    const noteOsc = audioCtx.createOscillator();
+                    const noteGain = audioCtx.createGain();
+                    noteOsc.type = 'sine';
+                    noteOsc.frequency.setValueAtTime(freq, now + idx * 0.08);
+                    noteGain.gain.setValueAtTime(0.12, now + idx * 0.08);
+                    noteGain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.8);
+                    noteOsc.connect(noteGain);
+                    noteGain.connect(audioCtx.destination);
+                    noteOsc.start(now + idx * 0.08);
+                    noteOsc.stop(now + idx * 0.08 + 0.8);
+                });
+            }
+        } catch (e) {
+            console.log("Audio play suppressed:", e);
+        }
+    }
+
+    function toggleSound() {
+        isMuted = !isMuted;
+        const icon = document.getElementById('soundIcon');
+        const text = document.getElementById('soundText');
+        if (isMuted) {
+            if (icon) icon.textContent = '🔇';
+            if (text) text.textContent = 'SOUND OFF';
+        } else {
+            if (icon) icon.textContent = '🔊';
+            if (text) text.textContent = 'SOUND ON';
+            playSound('click');
+        }
+    }
+
+    function goToStep(stepNumber) {
+        initAudio();
+        playSound('click');
+
+        // Adjust shell max width dynamically for landscape step 6
+        const shell = document.getElementById('siteShell');
+        if (shell) {
+            if (stepNumber === 6) {
+                shell.classList.remove('max-w-lg');
+                shell.classList.add('max-w-3xl');
+            } else {
+                shell.classList.remove('max-w-3xl');
+                shell.classList.add('max-w-lg');
+            }
+        }
+
+        // Hide all steps
+        for (let i = 1; i <= 6; i++) {
+            const el = document.getElementById(`step${i}`);
+            if (el) el.classList.add('hidden');
+        }
+
+        // Show target step
+        const target = document.getElementById(`step${stepNumber}`);
+        if (target) {
+            target.classList.remove('hidden');
+        }
+
+        currentStep = stepNumber;
+
+        // Update Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        if (progressBar && progressText) {
+            progressBar.style.width = `${(stepNumber / 6) * 100}%`;
+            progressText.textContent = `LEVEL ${stepNumber}/6`;
+        }
+
+        // Special triggers per step
+        if (stepNumber === 3) {
+            triggerStep3Sequence();
+        } else if (stepNumber === 5) {
+            playSound('harp');
+            createBurstParticles(window.innerWidth / 2, window.innerHeight / 2, 30);
+        } else if (stepNumber === 6) {
+            playSound('success');
+            createBurstParticles(window.innerWidth / 2, window.innerHeight / 3, 35);
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* --- QUESTION 1 INTERACTION --- */
+    function selectOptionQ1(buttonEl, choiceKey) {
+        initAudio();
+        playSound('click');
+
+        // Reset styles on all options
+        const options = document.querySelectorAll('.q1-option');
+        options.forEach(opt => {
+            opt.classList.remove('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-300');
+            opt.classList.add('bg-white/90', 'border-rose-200');
+        });
+
+        // Highlight selected
+        buttonEl.classList.remove('bg-white/90', 'border-rose-200');
+        buttonEl.classList.add('border-rose-500', 'bg-rose-50', 'ring-2', 'ring-rose-300');
+
+        const feedbackBanner = document.getElementById('q1Feedback');
+        const feedbackText = document.getElementById('q1FeedbackText');
+        if (feedbackBanner && feedbackText) {
+            feedbackText.textContent = "Aha! Let's see if you're right... 💭";
+            feedbackBanner.classList.remove('hidden');
+        }
+
+        // Enable next button
+        const nextBtn = document.getElementById('step2NextBtn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('hover:from-rose-600', 'hover:to-pink-600', 'shadow-lg', 'shadow-rose-200');
+        }
+    }
+
+    /* --- QUESTION 2 REALIZATION TIMELINE --- */
+    function triggerStep3Sequence() {
+        const l1 = document.getElementById('line1');
+        const l2 = document.getElementById('line2');
+        const l3 = document.getElementById('line3');
+        const l4 = document.getElementById('line4');
+        const sticker = document.getElementById('heartSticker');
+        const btn = document.getElementById('step3NextBtn');
+
+        [l1, l2, l3, l4, sticker, btn].forEach(el => {
+            if (el) el.classList.add('opacity-0');
+        });
+
+        setTimeout(() => { if (l1) l1.classList.remove('opacity-0'); playSound('click'); }, 500);
+        setTimeout(() => { if (l2) l2.classList.remove('opacity-0'); playSound('click'); }, 2200);
+        setTimeout(() => { if (l3) l3.classList.remove('opacity-0'); playSound('click'); }, 3800);
+        setTimeout(() => { if (l4) l4.classList.remove('opacity-0'); playSound('success'); }, 5000);
+        setTimeout(() => {
+            if (sticker) sticker.classList.remove('opacity-0');
+            if (btn) btn.classList.remove('opacity-0');
+        }, 6200);
+    }
+
+    /* --- BOUQUET ACCEPTANCE & EMOJI RAIN LOGIC (SLIDE 5) --- */
+    function handleBouquetChoice(choice) {
+        initAudio();
+        playSound('success');
+
+        const resultCard = document.getElementById('bouquetResultCard');
+        const resultEmoji = document.getElementById('bouquetResultEmoji');
+        const resultText = document.getElementById('bouquetResultText');
+
+        if (choice === 'take') {
+            resultEmoji.textContent = '😉';
+            resultText.textContent = "You accepted the bouquet! 😉 UBOS ANG LOVE MUSIC SA IG... eme di ko makikita pinili mo";
+            resultCard.className = "my-3 p-3.5 rounded-2xl bg-rose-50 border border-rose-300 text-rose-800 animate-fade-in-up text-left";
+            triggerEmojiRain('😉');
+        } else if (choice === 'decline') {
+            resultEmoji.textContent = '🙁';
+            resultText.textContent = "Ouch! 🙁 (It's okay though, I still appreciate you! 😉)";
+            resultCard.className = "my-3 p-3.5 rounded-2xl bg-slate-100 border border-slate-300 text-slate-700 animate-fade-in-up text-left";
+            triggerEmojiRain('🙁');
+        }
+
+        resultCard.classList.remove('hidden');
+    }
+
+    /* --- EMOJI RAIN ANIMATION SYSTEM --- */
+    const rainCanvas = document.getElementById('emojiRainCanvas');
+    const rainCtx = rainCanvas.getContext('2d');
+    let rainParticles = [];
+    let isRaining = false;
+
+    function resizeRainCanvas() {
+        rainCanvas.width = window.innerWidth;
+        rainCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeRainCanvas);
+    resizeRainCanvas();
+
+    class EmojiRainParticle {
+        constructor(emoji) {
+            this.emoji = emoji;
+            this.x = Math.random() * rainCanvas.width;
+            this.y = -20 - Math.random() * 100;
+            this.speedY = Math.random() * 4 + 3;
+            this.speedX = (Math.random() - 0.5) * 2;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotSpeed = (Math.random() - 0.5) * 0.08;
+            this.size = Math.random() * 24 + 20;
+            this.opacity = 1;
+        }
+
+        update() {
+            this.y += this.speedY;
+            this.x += this.speedX;
+            this.rotation += this.rotSpeed;
+            if (this.y > rainCanvas.height - 40) {
+                this.opacity -= 0.03;
+            }
+        }
+
+        draw() {
+            if (this.opacity <= 0) return;
+            rainCtx.save();
+            rainCtx.globalAlpha = Math.max(0, this.opacity);
+            rainCtx.translate(this.x, this.y);
+            rainCtx.rotate(this.rotation);
+            rainCtx.font = `${this.size}px sans-serif`;
+            rainCtx.textAlign = 'center';
+            rainCtx.textBaseline = 'middle';
+            rainCtx.fillText(this.emoji, 0, 0);
+            rainCtx.restore();
+        }
+    }
+
+    function triggerEmojiRain(emoji) {
+        rainParticles = [];
+        // Spawn 45 rain emojis
+        for (let i = 0; i < 45; i++) {
+            rainParticles.push(new EmojiRainParticle(emoji));
+        }
+        if (!isRaining) {
+            isRaining = true;
+            animateEmojiRain();
+        }
+    }
+
+    function animateEmojiRain() {
+        rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+        let activeCount = 0;
+
+        for (let i = 0; i < rainParticles.length; i++) {
+            const p = rainParticles[i];
+            p.update();
+            p.draw();
+            if (p.opacity > 0 && p.y < rainCanvas.height + 50) {
+                activeCount++;
+            }
+        }
+
+        if (activeCount > 0) {
+            requestAnimationFrame(animateEmojiRain);
+        } else {
+            isRaining = false;
+            rainCtx.clearRect(0, 0, rainCanvas.width, rainCanvas.height);
+        }
+    }
+
+    /* --- RESPONSE MODALS & INSTAGRAM DIRECT --- */
+    function showResponseModal(type) {
+        initAudio();
+        playSound('click');
+
+        const modal = document.getElementById('responseModal');
+        const content = document.getElementById('modalContent');
+        const emoji = document.getElementById('modalEmoji');
+        const actionBtn = document.getElementById('modalActionBtn');
+        const secondaryBtn = document.getElementById('modalSecondaryBtn');
+
+        if (type === 'response') {
+            emoji.textContent = '💬';
+            content.textContent = "Oh really? I'd love to hear what's on your mind! Tap below to send me a message on Instagram. 💕";
+            actionBtn.textContent = 'Message on IG (@milkndchoco_) 📩';
+            actionBtn.onclick = function() {
+                window.open('https://instagram.com/milkndchoco_', '_blank');
+                closeResponseModal();
+            };
+            if (secondaryBtn) secondaryBtn.classList.remove('hidden');
+        } else if (type === 'time') {
+            emoji.textContent = '⏳';
+            content.textContent = "Oh hey, I am not rushing po, take your time.";
+            actionBtn.textContent = 'Got it! 💕';
+            actionBtn.onclick = closeResponseModal;
+            if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        } else if (type === 'appreciate') {
+            emoji.textContent = '💗';
+            content.textContent = "It's okayy, I just want to clear my head hehe, but it's honestly okay.";
+            actionBtn.textContent = 'Got it! 💕';
+            actionBtn.onclick = closeResponseModal;
+            if (secondaryBtn) secondaryBtn.classList.add('hidden');
+        }
+
+        modal.classList.remove('hidden');
+    }
+
+    function closeResponseModal() {
+        playSound('click');
+        document.getElementById('responseModal').classList.add('hidden');
+    }
+
+    function triggerStickerPop(element, symbol) {
+        initAudio();
+        playSound('click');
+        const rect = element.getBoundingClientRect();
+        createBurstParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 12);
+    }
+
+    /* --- CANVAS FLOATING PARTICLES --- */
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    });
+
+    const particles = [];
+    const burstParticles = [];
+
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * width;
+            this.y = height + Math.random() * 50;
+            this.size = Math.random() * 12 + 8;
+            this.speedY = Math.random() * 1 + 0.4;
+            this.opacity = Math.random() * 0.4 + 0.2;
+            this.symbol = ['🌸','💗','✨','🐾','🌷'][Math.floor(Math.random() * 5)];
+        }
+        update() {
+            this.y -= this.speedY;
+            this.x += Math.sin(this.y * 0.01) * 0.5;
+            if (this.y < -30) this.reset();
+        }
+        draw() {
+            ctx.globalAlpha = this.opacity;
+            ctx.font = `${this.size}px sans-serif`;
+            ctx.fillText(this.symbol, this.x, this.y);
+        }
+    }
+
+    class BurstParticle {
+        constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5 + 2;
+            this.vx = Math.cos(angle) * speed;
+            this.vy = Math.sin(angle) * speed - 2;
+            this.size = Math.random() * 16 + 12;
+            this.opacity = 1;
+            this.gravity = 0.12;
+            this.symbol = ['💕', '💖', '✨', '🌸', '💘'][Math.floor(Math.random() * 5)];
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            this.vy += this.gravity;
+            this.opacity -= 0.025;
+        }
+        draw() {
+            if (this.opacity <= 0) return;
+            ctx.globalAlpha = Math.max(0, this.opacity);
+            ctx.font = `${this.size}px sans-serif`;
+            ctx.fillText(this.symbol, this.x, this.y);
+        }
+    }
+
+    for (let i = 0; i < 25; i++) particles.push(new Particle());
+
+    function createBurstParticles(x, y, count = 20) {
+        for (let i = 0; i < count; i++) burstParticles.push(new BurstParticle(x, y));
+    }
+
+    function triggerHeartBurst(e) {
+        initAudio();
+        playSound('click');
+        const x = e.clientX || window.innerWidth / 2;
+        const y = e.clientY || window.innerHeight / 2;
+        createBurstParticles(x, y, 25);
+    }
+
+    function animateCanvas() {
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        for (let i = burstParticles.length - 1; i >= 0; i--) {
+            const bp = burstParticles[i];
+            bp.update();
+            bp.draw();
+            if (bp.opacity <= 0) burstParticles.splice(i, 1);
+        }
+        requestAnimationFrame(animateCanvas);
+    }
+
+    window.onload = function() {
+        animateCanvas();
+    };
+
+    /* --- CINEMATIC OPENING DISMISS --- */
+    (function(){
+        const intro = document.getElementById('cinematicIntro');
+        const shell = document.getElementById('siteShell');
+        const openBtn = document.getElementById('introOpenBtn');
+
+        function reveal(){
+            if(intro) intro.classList.add('dismissed');
+            if(shell) shell.classList.add('revealed');
+            try { initAudio(); playSound('success'); } catch(e){}
+        }
+
+        if(openBtn) openBtn.addEventListener('click', reveal, {once:true});
+    })();
+
+    /* --- SPOTIFY MUSIC PLAYER TOGGLE --- */
+    function toggleLetterMusic(){
+        const player = document.getElementById('letterMusicPlayer');
+        const btn = document.getElementById('letterMusicBtn');
+        if(!player || !btn) return;
+        const opening = player.classList.contains('hidden');
+        player.classList.toggle('hidden', !opening);
+        btn.textContent = opening ? 'Hide' : '▶ Play';
+        try { initAudio(); playSound('click'); } catch(e){}
+    }
+</script>
+</body>
+</html>
